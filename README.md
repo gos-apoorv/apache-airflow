@@ -26,3 +26,5 @@ Per Airflow, Different types of operators available are as follows:
 ### References
 - [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
 - [github:apache/airflow](https://github.com/apache/airflow)
+- [Youtube: Running Apache Airflow with the KubernetesExecutor on a multi-node Kubernetes cluster locally](https://youtu.be/AjBADrVQJv0)
+- [Youtube: Airflow on Kubernetes - Containerizing your workflows](https://youtu.be/3VDeKmxHWYA)
