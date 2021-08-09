@@ -20,11 +20,23 @@ Per Airflow, Different types of operators available are as follows:
 - **MySqlOperator** - executes a SQL command in MySQL. Specific operators are available for each database.
 - **Sensor** - waits for a certain time, file, database row, S3 key, etc…
 
+### Steps to Install
+  - Specify the repo alongwith version to be used in [Charts.yaml](.helm/apache-airflow/Chart.yaml)
+  - Install the dependency mentioned in charts by executing the command:
+    `helm dependency update ./apache-airflow`
+  - Helm install using `helm install rl-apache-airflow ./apache-airflow`
+  - Check the status of installation using `helm list`
+  - Export the name of web-server pod using `export POD_NAME=$(kubectl get pods --namespace default -l "component=web,app=airflow" -o jsonpath="{.items[0].metadata.name}")`
+  - Echo local url to check the status `echo http://127.0.0.1:8080`
+  - Port forward the port 8080 to access the cluster locally `kubectl port-forward --namespace default $POD_NAME 8080:8080`
+  - Login into browser credentials `admin/admin`
+![airflow_login.png](airflow_login.png)
+
 ### Architecture
 ![img_2.png](img_2.png)
 
 ### References
-- [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
-- [github:apache/airflow](https://github.com/apache/airflow)
-- [Youtube: Running Apache Airflow with the KubernetesExecutor on a multi-node Kubernetes cluster locally](https://youtu.be/AjBADrVQJv0)
-- [Youtube: Airflow on Kubernetes - Containerizing your workflows](https://youtu.be/3VDeKmxHWYA)
+  - [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
+  - [github: apache/airflow](https://github.com/apache/airflow)
+  - [medium.com: Setting up airflow on a local kubernetes cluster](https://medium.com/uncanny-recursions/setting-up-airflow-on-a-local-kubernetes-cluster-using-helm-57eb0b73dc02)
+  - [github.com: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)
