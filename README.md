@@ -38,9 +38,20 @@ Per Airflow, Different types of operators available are as follows:
 ![airflow_login.png](.images/airflow_login.png)
 
 ### Add DAG to Airflow
-  - dfdfd
-  - dfdf
-  - dfdf
+  - In order to override default generate a values.yaml file using command:
+    - `helm show values apache-airflow/airflow > .helm/apache-airflow/values.yaml`
+  - Edit the file with below config:
+```python  
+  # Mount additional volumes into scheduler.
+  extraVolumeMounts: # this will get the volume and mount it to that path in the container
+    - name: dags
+      mountPath: /opt/airflow/dags  # location in the container it will put the directory mentioned below.
+
+  extraVolumes: # this will create the volume from the directory
+    - name: dags
+      hostPath:
+        path: "<path-to-repo>/apache-airflow/dags"  # Location of Physical Dags
+```
 
 ### References
   - [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
