@@ -8,7 +8,8 @@ In simpler terms, Airflow is a platform to programmatically author, schedule and
 It can be used to schedule a sequence of tasks in a workflows as a directed acyclic graphs (DAG).
 In depth, can read from [airflow.apache.org](https://airflow.apache.org/)
 
-![img.png](.images/img.png)
+![DAGS.png](.images/DAGS.png)
+![dags_chart.png](.images/dags_chart.png)
 
 In Airflow all workflows are DAGs. A Dag consists of operators. An operator defines an individual task that needs to be performed. 
 
