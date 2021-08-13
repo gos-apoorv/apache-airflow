@@ -19,6 +19,12 @@ uninstall: ## Uninstall Release
 check-helm: ## Check Helm Release
 		helm list -n apache-airflow
 
+add-volume: ## Add a Persistent Volume
+		kubectl apply -f .helm/apache-airflow/persistentVolume.yaml -n apache-airflow
+
+claim-volume: ## Claim a Persistent Volume
+		kubectl apply -f .helm/apache-airflow/persistentVolumeClaim.yaml -n apache-airflow
+
 port-forward: ## Port forward from local k8s cluster to access locally
 		export POD_NAME=$$(kubectl get pods --namespace apache-airflow -l "component=webserver" -o jsonpath="{.items[0].metadata.name}"); \
 		kubectl port-forward --namespace apache-airflow $$POD_NAME 8080:8080

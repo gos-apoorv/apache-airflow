@@ -22,7 +22,8 @@ Per Airflow, Different types of operators available are as follows:
 - **Sensor** - waits for a certain time, file, database row, S3 key, etc…
 
 ### Architecture
-![img_2.png](.images/img_2.png)
+![architecture.png](.images/architecture.png)
+
 
 ### Steps to Install
   - Specify the repo alongwith version to be used in [Charts.yaml](.helm/backup/Chart.yaml)
