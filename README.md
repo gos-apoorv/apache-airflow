@@ -54,6 +54,10 @@ Per Airflow, Different types of operators available are as follows:
         path: "<path-to-repo>/apache-airflow/dags"  # Location of Physical Dags
 ```
 
+### Usage
+  - To prepare and set up pre-requisite, execute the makefile  command: `make prep`
+  - Post prep, In order to deploy the setup, execute the makefile command:  `make deploy`
+
 ### References
   - [github: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)
   - [github: apache/airflow](https://github.com/apache/airflow)

@@ -1,23 +1,9 @@
 dep: ## Get all dependencies
 		helm repo add apache-airflow https://airflow.apache.org
 		helm repo update
-		#helm dependency update .helm/apache-airflow
 
-install-debug: ## Install Release in helm with debug enabled
-		helm install rl-apache-airflow apache-airflow/airflow --namespace apache-airflow --debug
-		#helm install rl-apache-airflow .helm/apache-airflow --namespace airflow --debug
-
-upgrade: ## Upgrade the Release
-		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
-
-install: upgrade ## Install Release in helm
-
-uninstall: ## Uninstall Release
-		helm uninstall rl-apache-airflow -n apache-airflow
-		kill $$(lsof -ti:8080)
-
-check-helm: ## Check Helm Release
-		helm list -n apache-airflow
+create-ns: ##  Create namespace in k8s
+		kubectl create namespace apache-airflow
 
 add-volume: ## Add a Persistent Volume
 		kubectl apply -f .helm/apache-airflow/persistentVolume.yaml -n apache-airflow
@@ -25,9 +11,29 @@ add-volume: ## Add a Persistent Volume
 claim-volume: ## Claim a Persistent Volume
 		kubectl apply -f .helm/apache-airflow/persistentVolumeClaim.yaml -n apache-airflow
 
+prep: dep create-ns add-volume claim-volume ## Prep  and execute all pre-requisite
+
+install: ## Install Release in helm with debug enabled
+		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
+
+check-helm: ## Check Helm Release
+		helm list -n apache-airflow
+
+sleep: ## Sleep for 60 seconds for pods to get ready
+		@sleep 60
+
 port-forward: ## Port forward from local k8s cluster to access locally
 		export POD_NAME=$$(kubectl get pods --namespace apache-airflow -l "component=webserver" -o jsonpath="{.items[0].metadata.name}"); \
 		kubectl port-forward --namespace apache-airflow $$POD_NAME 8080:8080
+
+deploy: install sleep port-forward ## Deploy the code in  local k8s cluster
+
+upgrade: ## Upgrade the Release
+		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
+
+uninstall: ## Uninstall Release
+		helm uninstall rl-apache-airflow -n apache-airflow
+		kill $$(lsof -ti:8080)
 
 browse: ## Open the Browser
 		open -a "Google Chrome" http://localhost:8080
