@@ -8,7 +8,7 @@ In simpler terms, Airflow is a platform to programmatically author, schedule and
 It can be used to schedule a sequence of tasks in a workflows as a directed acyclic graphs (DAG).
 In depth, can read from [airflow.apache.org](https://airflow.apache.org/)
 
-![DAGS.png](.images/DAGS.png)
+![dags.png](.images/dags.png)
 ![dags_chart.png](.images/dags_chart.png)
 
 In Airflow all workflows are DAGs. A Dag consists of operators. An operator defines an individual task that needs to be performed. 
@@ -55,8 +55,8 @@ Per Airflow, Different types of operators available are as follows:
 ```
 
 ### References
-  - [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
+  - [github: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)
   - [github: apache/airflow](https://github.com/apache/airflow)
+  - [marclamberti.com: airflow-on-kubernetes-get-started-in-10-mins](https://marclamberti.com/blog/airflow-on-kubernetes-get-started-in-10-mins/)  
+  - [towardsdatascience.com: a-journey-to-airflow-on-kubernetes](https://towardsdatascience.com/a-journey-to-airflow-on-kubernetes-472df467f556)
   - [medium.com: Setting up airflow on a local kubernetes cluster](https://medium.com/uncanny-recursions/setting-up-airflow-on-a-local-kubernetes-cluster-using-helm-57eb0b73dc02)
-  - [github.com: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)
-  - [marclamberti.com: airflow-on-kubernetes-get-started-in-10-mins](https://marclamberti.com/blog/airflow-on-kubernetes-get-started-in-10-mins/)
