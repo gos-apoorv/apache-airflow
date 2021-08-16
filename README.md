@@ -58,6 +58,35 @@ Per Airflow, Different types of operators available are as follows:
   - To prepare and set up pre-requisite, execute the makefile  command: `make prep`
   - Post prep, In order to deploy the setup, execute the makefile command:  `make deploy`
 
+### Extend Base Image
+  - Create a [Dockerfile](Dockerfile) and add required steps i.e. pip install etc
+  - Build and push the extended image into docker registry: ```make extend-image```
+  - Edit the [values.yaml](.helm/apache-airflow/values.yaml) at below steps:
+```buildoutcfg
+# Default airflow repository -- overrides all the specific images below
+defaultAirflowRepository: gosapoorv/airflow
+
+# Default airflow tag to deploy
+defaultAirflowTag: "0.0.1"
+
+# Airflow version (Used to make some decisions based on Airflow Version being deployed)
+airflowVersion: "2.1.2"
+
+# Images
+images:
+  airflow:
+    repository: gosapoorv/airflow
+    tag: 0.0.1
+    pullPolicy: Always    
+```
+   - Also create secret in required namespace (apache-airflow in this case) and add its name in values.yaml file:
+```buildoutcfg
+# Auth secret for a private registry
+# This is used if pulling airflow images from a private registry
+registry:
+  secretName: regdockhub
+```
+
 ### References
   - [github: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)
   - [github: apache/airflow](https://github.com/apache/airflow)

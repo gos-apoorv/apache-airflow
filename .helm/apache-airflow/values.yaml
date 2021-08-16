@@ -34,20 +34,20 @@ gid: 0
 airflowHome: /opt/airflow
 
 # Default airflow repository -- overrides all the specific images below
-defaultAirflowRepository: apache/airflow
+defaultAirflowRepository: gosapoorv/airflow
 
 # Default airflow tag to deploy
-defaultAirflowTag: "2.1.0"
+defaultAirflowTag: "0.0.1"
 
 # Airflow version (Used to make some decisions based on Airflow Version being deployed)
-airflowVersion: "2.1.0"
+airflowVersion: "2.1.2"
 
 # Images
 images:
   airflow:
-    repository: ~
-    tag: ~
-    pullPolicy: IfNotPresent
+    repository: gosapoorv/airflow
+    tag: 0.0.1
+    pullPolicy: Always
   pod_template:
     repository: ~
     tag: ~
@@ -988,7 +988,7 @@ redis:
 # Auth secret for a private registry
 # This is used if pulling airflow images from a private registry
 registry:
-  secretName: ~
+  secretName: regdockhub
 
   # Example:
   # connection:

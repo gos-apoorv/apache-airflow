@@ -13,6 +13,17 @@ claim-volume: ## Claim a Persistent Volume
 
 prep: dep create-ns add-volume claim-volume ## Prep  and execute all pre-requisite
 
+docker-login: ## Login into Docker Hub
+		docker login
+
+docker-build: ## Build The Docker Image
+		docker build --pull --no-cache -f Dockerfile -t gosapoorv/airflow:0.0.1 .
+
+docker-push: ## Push local image into Docker hub
+		docker push gosapoorv/airflow:0.0.1
+
+extend-image:docker-login docker-build docker-push  ## Extend/Customize the Base Image
+
 install: ## Install Release in helm with debug enabled
 		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
 
