@@ -20,7 +20,7 @@ docker-build: ## Build The Docker Image
 		docker build --pull --no-cache -f Dockerfile -t <repo-user-name>/airflow:0.0.1 .
 
 docker-push: ## Push local image into Docker hub
-		docker push gosapoorv/airflow:0.0.1
+		docker push <repo-user-name>/airflow:0.0.1
 
 extend-image:docker-login docker-build docker-push  ## Extend/Customize the Base Image
 
