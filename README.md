@@ -64,7 +64,7 @@ Per Airflow, Different types of operators available are as follows:
   - Edit the [values.yaml](.helm/apache-airflow/values.yaml) at below steps:
 ```buildoutcfg
 # Default airflow repository -- overrides all the specific images below
-defaultAirflowRepository: gosapoorv/airflow
+defaultAirflowRepository: <repo-user-name>/airflow
 
 # Default airflow tag to deploy
 defaultAirflowTag: "0.0.1"
@@ -75,7 +75,7 @@ airflowVersion: "2.1.2"
 # Images
 images:
   airflow:
-    repository: gosapoorv/airflow
+    repository: <repo-user-name>/airflow
     tag: 0.0.1
     pullPolicy: Always    
 ```
@@ -86,6 +86,9 @@ images:
 registry:
   secretName: regdockhub
 ```
+
+### Note:
+    Local path reference has to be set in order to use this repo
 
 ### References
   - [github: airflow-helm/charts](https://github.com/airflow-helm/charts/tree/main/charts/airflow)

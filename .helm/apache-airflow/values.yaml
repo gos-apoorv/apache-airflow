@@ -34,7 +34,7 @@ gid: 0
 airflowHome: /opt/airflow
 
 # Default airflow repository -- overrides all the specific images below
-defaultAirflowRepository: gosapoorv/airflow
+defaultAirflowRepository: <repo-user-name>/airflow
 
 # Default airflow tag to deploy
 defaultAirflowTag: "0.0.1"
@@ -45,7 +45,7 @@ airflowVersion: "2.1.2"
 # Images
 images:
   airflow:
-    repository: gosapoorv/airflow
+    repository: <repo-user-name>/airflow
     tag: 0.0.1
     pullPolicy: Always
   pod_template:
@@ -526,7 +526,7 @@ scheduler:
   extraVolumes: # this will create the volume from the directory
     - name: dags
       hostPath:
-        path: "/Users/apoorv.goswami/Github/gos-apoorv/apache-airflow/dags"  # Location of Dags
+        path: "<local_dags_path>"  # Location of Dags
 
   # Select certain nodes for airflow scheduler pods.
   nodeSelector: {}

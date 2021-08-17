@@ -17,7 +17,7 @@ docker-login: ## Login into Docker Hub
 		docker login
 
 docker-build: ## Build The Docker Image
-		docker build --pull --no-cache -f Dockerfile -t gosapoorv/airflow:0.0.1 .
+		docker build --pull --no-cache -f Dockerfile -t <repo-user-name>/airflow:0.0.1 .
 
 docker-push: ## Push local image into Docker hub
 		docker push gosapoorv/airflow:0.0.1

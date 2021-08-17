@@ -11,4 +11,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/Users/apoorv.goswami/Github/gos-apoorv/apache-airflow/storage"  # Location of PV
+    path: "<local_storage_path>"  # Location of PV
