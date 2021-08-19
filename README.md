@@ -4,9 +4,15 @@ Repo to demonstrate Apache Airflow in local cluster.
 ![logo.png](.images/logo.png)
 
 ### What is Airflow
+<p style='text-align: justify;'>
+Apache Airflow is an open-source workflow management platform. It started at Airbnb in October 2014 as 
+a solution to manage the company's increasingly complex workflows. Creating Airflow allowed Airbnb to 
+programmatically author and schedule their workflows and monitor them via the built-in Airflow user interface
+
 In simpler terms, Airflow is a platform to programmatically author, schedule and monitor workflows.
 It can be used to schedule a sequence of tasks in a workflows as a directed acyclic graphs (DAG).
 In depth, can read from [airflow.apache.org](https://airflow.apache.org/)
+</p>
 
 ![dags.png](.images/dags.png)
 ![dags_chart.png](.images/dags_chart.png)
