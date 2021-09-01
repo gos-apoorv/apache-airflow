@@ -17,12 +17,15 @@ docker-login: ## Login into Docker Hub
 		docker login
 
 docker-build: ## Build The Docker Image
-		docker build --pull --no-cache -f Dockerfile -t <repo-user-name>/airflow:0.0.1 .
+		docker build --pull --no-cache -f Dockerfile -t gosapoorv/airflow:0.0.1 .
 
 docker-push: ## Push local image into Docker hub
-		docker push <repo-user-name>/airflow:0.0.1
+		docker push gosapoorv/airflow:0.0.1
 
 extend-image:docker-login docker-build docker-push  ## Extend/Customize the Base Image
+
+git-secret: ## Create Git Repo Secret
+		kubectl apply -n apache-airflow -f .helm/apache-airflow/git.secret.yaml
 
 install: ## Install Release in helm with debug enabled
 		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
@@ -41,6 +44,9 @@ deploy: install sleep port-forward ## Deploy the code in  local k8s cluster
 
 upgrade: ## Upgrade the Release
 		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values.yaml
+
+upgrade-git: ## Upgrate the Release with Git Changes
+		helm upgrade --install rl-apache-airflow apache-airflow/airflow -n apache-airflow -f .helm/apache-airflow/values-git.yaml
 
 uninstall: ## Uninstall Release
 		helm uninstall rl-apache-airflow -n apache-airflow
