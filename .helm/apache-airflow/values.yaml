@@ -519,14 +519,16 @@ scheduler:
   extraInitContainers: []
 
   # Mount additional volumes into scheduler.
-  extraVolumeMounts: # this will get the volume and mount it to that path in the container
-    - name: dags
-      mountPath: /opt/airflow/dags  # location in the container it will put the directory mentioned below.
-
-  extraVolumes: # this will create the volume from the directory
-    - name: dags
-      hostPath:
-        path: "<local_dags_path>"  # Location of Dags
+  extraVolumes: [ ]
+  extraVolumeMounts: [ ]
+#  extraVolumeMounts: # this will get the volume and mount it to that path in the container
+#    - name: dags
+#      mountPath: /opt/airflow/dags  # location in the container it will put the directory mentioned below.
+#
+#  extraVolumes: # this will create the volume from the directory
+#    - name: dags
+#      hostPath:
+#        path: "<local_path_for_dags>"  # Location of Dags
 
   # Select certain nodes for airflow scheduler pods.
   nodeSelector: {}
